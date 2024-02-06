@@ -1,7 +1,11 @@
-setwd('C:\Users\yegor\Desktop\BaranovskiRA_work')
+setwd('C:/Users/yegor/Desktop/BaranovskiRA_work')
+
+library(data.table)
+library(bigrquery)
+library(dplyr)
 
 json_key_file <- "firstproject-key.json"
-bigrquery::bq_auth(path = json_key_file_path)
+bigrquery::bq_auth(path = json_key_file)
 
 sql_query<-"
 SELECT Actor1CountryCode, Actor2CountryCode, Year, EventCode, GoldsteinScale FROM
@@ -18,4 +22,4 @@ ORDER BY
 "
 project_id <- "first-project-380014"
 gdelt_data_frame <- bq_project_query(project_id, sql_query) %>% bq_table_download()
-fwrite(gdelt_data_frame,"C:\Users\yegor\Desktop\BaranovskiRA_work\DataRAW\GDELT_pre2024.csv", )
+fwrite(gdelt_data_frame, "C:/Users/yegor/Desktop/BaranovskiRA_work/DataRAW/GDELT_pre2024.csv")
