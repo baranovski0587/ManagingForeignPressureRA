@@ -45,6 +45,30 @@ gdelt<- rename(gdelt, "cameocode" = "EventCode")
 gdelt<- rename(gdelt, "a_ccodealp" = "Actor1CountryCode")
 gdelt<- rename(gdelt, "b_ccodealp" = "Actor2CountryCode")
 
+gdelt <- gdelt %>%
+  mutate(
+    a_ccodealp = if_else(a_ccodealp %in% c("SUN", "USR"), "RUS", a_ccodealp),
+    b_ccodealp = if_else(b_ccodealp %in% c("SUN", "USR"), "RUS", b_ccodealp),
+    a_ccodealp = if_else(a_ccodealp %in% c("YUG", "FRY", "SCG"), "SRB", a_ccodealp),
+    b_ccodealp = if_else(b_ccodealp %in% c("YUG", "FRY", "SCG"), "SRB", b_ccodealp),
+    a_ccodealp = if_else(a_ccodealp == "MTN", "MNE", a_ccodealp),
+    b_ccodealp = if_else(b_ccodealp == "MTN", "MNE", b_ccodealp),
+    a_ccodealp = if_else(a_ccodealp == "ROM", "ROU", a_ccodealp),
+    b_ccodealp = if_else(b_ccodealp == "ROM", "ROU", b_ccodealp),
+    a_ccodealp = if_else(a_ccodealp %in% c("CZA", "CSK"), "CZE", a_ccodealp),
+    b_ccodealp = if_else(b_ccodealp %in% c("CZA", "CSK"), "CZE", b_ccodealp),
+    a_ccodealp = if_else(a_ccodealp == "YMS", "YMD", a_ccodealp),
+    b_ccodealp = if_else(b_ccodealp == "YMS", "YMD", b_ccodealp),
+    a_ccodealp = if_else(a_ccodealp == "YMN", "YEM", a_ccodealp),
+    b_ccodealp = if_else(b_ccodealp == "YMN", "YEM", b_ccodealp),
+    a_ccodealp = if_else(a_ccodealp == "TMP", "TLS", a_ccodealp),
+    b_ccodealp = if_else(b_ccodealp == "TMP", "TLS", b_ccodealp),
+    a_ccodealp = if_else(a_ccodealp == "GME", "DDR", a_ccodealp),
+    b_ccodealp = if_else(b_ccodealp == "GME", "DDR", b_ccodealp),
+    a_ccodealp = if_else(a_ccodealp == "GMW", "DEU", a_ccodealp),
+    b_ccodealp = if_else(b_ccodealp == "GMW", "DEU", b_ccodealp)
+  )
+
 fwrite(gdelt, 'C:/Users/yegor/Desktop/BaranovskiRA_work/DataClean/CleanedGDELT.csv')
 
 
