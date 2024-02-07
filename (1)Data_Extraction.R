@@ -1,5 +1,7 @@
 setwd('C:/Users/yegor/Desktop/BaranovskiRA_work')
 
+#project key and json key will be unique
+
 library(data.table)
 library(bigrquery)
 library(dplyr)
