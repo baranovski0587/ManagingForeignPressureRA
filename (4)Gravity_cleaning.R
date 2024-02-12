@@ -5,11 +5,14 @@ library(dplyr)
 library(readr)
 library(tidyr)
 
-gravity_data <- fread('Gravity_V202211.csv')
-gravity_data <- gravity_data %>% select(year, country_id_o, country_id_d, iso3_o, iso3_d, gdp_o, gdp_d, pop_o, pop_d,gdpcap_o, gdpcap_d, tradeflow_comtrade_o,tradeflow_comtrade_d, tradeflow_baci, tradeflow_imf_o, tradeflow_imf_d)
+gravity_data <- fread('Gravity_V202211.csv', select = c('year', 'country_id_o', 'country_id_d', 
+                                                        'iso3_o', 'iso3_d', 'gdp_o', 'gdp_d', 'pop_o', 'pop_d', 
+                                                        'gdpcap_o', 'gdpcap_d', 'tradeflow_comtrade_o',
+                                                        'tradeflow_comtrade_d', 'tradeflow_baci', 
+                                                        'tradeflow_imf_o', 'tradeflow_imf_d'))
 
-gravity_data<- rename(gravity_data, "a_ccodealp" = "iso3_o")
-gravity_data<- rename(gravity_data, "b_ccodealp" = "iso3_d")
+setnames(gravity_data, old = c("iso3_o", "iso3_d"), new = c("a_ccodealp", "b_ccodealp"))
+
 
 ##Soviet Union -> Russia
 gravity_data <- gravity_data %>%
